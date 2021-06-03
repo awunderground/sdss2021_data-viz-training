@@ -11,6 +11,22 @@ output:
       chunk_output_type: console
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+</style>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato" />
+
+```{css echo=FALSE}
+h1 {
+    font-size: 34px;
+    color: #337AB7;
+}
+p {
+    margin: 20px 0 20px;
+}
+```
+
 ## Books
 
 * [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund

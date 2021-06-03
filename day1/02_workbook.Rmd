@@ -1,6 +1,6 @@
 ---
 title: "Day 1: Grammar of Graphics"
-author: "YOUR NAME HERE"
+author: "Aaron R. Williams"
 output:
   html_document:
     code_folding: hide
@@ -19,49 +19,89 @@ library(tidyverse)
 ## Exercise 1
 
 ```{r}
-# YOUR WORK GOES HERE
+# scatter plot of pressures and wind speeds
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind))
+
+storms %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pressure, y = wind))
 
 ```
 
 ## Exercise 2
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind, color = category))
+
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind, color = "green"))
+
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind), color = "green")
+
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind), alpha = 0.2)
 
 ```
 
 ## Exercise 3
 
 ```{r}
-# YOUR WORK GOES HERE
+options(scipen = 999)
+
+ggplot(data = msleep) +
+  geom_point(mapping = aes(x = bodywt, y = sleep_total)) +
+  scale_x_log10() +
+  scale_y_continuous(limits = c(0, NA))
 
 ```
 
 ## Exercise 4
 
 ```{r}
-# YOUR WORK GOES HERE
+data <- tibble(x = 1:10, y = 1:10)
+
+ggplot(data = data) +
+  geom_blank(mapping = aes(x = x, y = y)) +
+  coord_polar() +
+  labs(title = "Polar coordinate system") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
 ## Exercise 5
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind)) +
+  facet_wrap(~ category)
 
 ```
 
 ## Exercise 6
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms) +
+  geom_bar(mapping = aes(x = category))
+
+storms %>%
+  count(category) %>%
+  ggplot() +
+  geom_col(mapping = aes(x = category, y = n)) +
+  labs(y = "count")
 
 ```
 
 ## Exercise 7
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms) +
+  geom_bar(mapping = aes(x = category)) +
+  labs(title = "Plot title") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
@@ -75,20 +115,41 @@ library(tidyverse)
 ## Exercise 9
 
 ```{r}
-# YOUR WORK GOES HERE
+storms_summary <- storms %>%  
+  filter(category > 0) %>%
+  distinct(name, year) %>%
+  count(year)
+
+ggplot(data = storms_summary) + 
+  geom_line(mapping = aes(x = year, y = n)) +
+  geom_point(mapping = aes(x = year, y = n))
 
 ```
 
 ## Exercise 10
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms, mapping = aes(x = pressure, y = wind)) +
+  geom_point() + 
+  geom_smooth()
+
+ggplot(data = storms) +
+  geom_point(mapping = aes(x = pressure, y = wind)) + 
+  geom_smooth(mapping = aes(x = pressure, y = wind))
+
 
 ```
 
 ## Exercise 11
 
 ```{r}
-# YOUR WORK GOES HERE
+ggplot(data = storms, mapping = aes(x = pressure, y = wind)) +
+  geom_point() + 
+  geom_smooth()
+
+ggsave(filename = "favorite-plot.pdf", width = 6, height = 4)
 
 ```
+
+
+

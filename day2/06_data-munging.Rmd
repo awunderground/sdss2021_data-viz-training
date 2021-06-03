@@ -11,6 +11,22 @@ output:
       chunk_output_type: console
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+</style>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato" />
+
+```{css echo=FALSE}
+h1 {
+    font-size: 34px;
+    color: #337AB7;
+}
+p {
+    margin: 20px 0 20px;
+}
+```
+
 ```{r message = FALSE, warning = FALSE}
 library(tidyverse)
 
